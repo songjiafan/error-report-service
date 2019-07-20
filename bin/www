@@ -1,0 +1,12 @@
+#!/usr/bin/env node
+const app = require('../server')
+const http = require('http')
+const serverConfig = require('../common/constants/server')
+const { writePid } = require('../common/tool')
+
+const server = http.createServer(app) // 创建httpserver
+
+server.listen(serverConfig.SERVER_PORT)
+server.on('error', () => process.exit(1))
+
+writePid() // 写入pid
